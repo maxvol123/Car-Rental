@@ -4,9 +4,10 @@ interface ModalProps{
     title: string
     onClose: ()=> void
     price:any
+    GoToPay: ()=> void
 }
 
-export function Modal({title, onClose,price}:ModalProps) {
+export function Modal({title, onClose,price,GoToPay}:ModalProps) {
     const [day, setDay]= useState("1")
     function ChangeDay(event: React.ChangeEvent<HTMLInputElement>) {
         setDay(event.target.value)
@@ -26,7 +27,7 @@ export function Modal({title, onClose,price}:ModalProps) {
                 <input type="time" className="w-1/3"/>
                    <div className="">total amount {Number(day)*price}</div>
                 </div>
-                <button className="bg-green-500 px-2 py-1 rounded mt-3">Go to payment</button>
+                <button className="bg-green-500 px-2 py-1 rounded mt-3" onClick={()=>{GoToPay()}}>Go to payment</button>
                 <button className="bg-blue-500 px-2 py-1 rounded ml-96" onClick={()=>{onClose()}}>Cancel</button>
             </div>
             </>
