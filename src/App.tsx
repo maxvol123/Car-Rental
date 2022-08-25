@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from 'react';
+import { Car_element } from './components/CarElement';
+import { CreateElement } from './components/CreateElement';
+import { Modal } from './components/Modal';
 function App() {
+  const [value, setValue]= useState("")
+  const [modal,setModal]=useState(false)
+  const [title,setTitle]=useState("")
+  const [price,setPrice]=useState()
+  function Change(event: React.ChangeEvent<HTMLInputElement>) {
+    setValue(event.target.value)
+  }
+  let filterValue =Car_element.filter(element =>{
+    return element.title.toLowerCase().includes(value.toLowerCase())
+  })
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    {modal&&<Modal onClose={()=>{setModal(false)}} title={title} price={price}/>}
+    <div className="text-center">
+      <input type="text" placeholder='Find car' className='w-full rounded mt-3'
+      value={value}
+      onChange={Change}
+      />
     </div>
+    <div className='flex flex-col items-center'>
+    {filterValue.map(product=><CreateElement setTitle={setTitle} setPrice={setPrice} Car_element={product} onOpen={()=>{setModal(true) }} key={product.id}/>)}
+    </div>
+    </>
   );
 }
 
