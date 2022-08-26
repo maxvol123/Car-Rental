@@ -14,9 +14,17 @@ export function Pay({onClose, onPay}:PayProps) {
       function ChangeDate(event: React.ChangeEvent<HTMLInputElement>) {
         setDate(event.target.value)
       }
+      function ChangeYear(event: React.ChangeEvent<HTMLInputElement>) {
+        setYear(event.target.value)
+      }
+      function ChangeCvv(event: React.ChangeEvent<HTMLInputElement>) {
+        setCvv(event.target.value)
+      }
 
     const [number, setNumber]=useState("2154 2548 2564 4246")
-    const [date, setDate]=useState("07/24")
+    const [date, setDate]=useState("07")
+    const [year, setYear]=useState("22")
+    const [cvv, setCvv]=useState("")
 
     return(
         <>
@@ -30,7 +38,11 @@ export function Pay({onClose, onPay}:PayProps) {
                 <input className="mt-3 ml-5 bg-gradient-to-r from-purple-900 to-blue-500" maxLength={16} type="text" placeholder="Card Number" value={number}
                 onChange={ChangeNumber}
                 />
-                <input className="mt-16 ml-5 bg-gradient-to-r from-purple-900 to-blue-500" maxLength={5} placeholder="Date" onChange={ChangeDate} value={date}/>
+                <br />
+                <input className=" w-7 text-center mt-16 ml-5 bg-gradient-to-r from-purple-900 to-blue-500" maxLength={2} placeholder="MM" onChange={ChangeDate} value={date}/>
+                <input className=" w-7 text-center mt-16 ml-2 bg-gradient-to-r from-purple-900 to-blue-500" maxLength={2} placeholder="YY" onChange={ChangeYear} value={year}/>
+                <input type="password" className=" w-8 text-center mt-16 ml-24 bg-gradient-to-r from-purple-900 to-blue-500" maxLength={3} placeholder="CVV" onChange={ChangeCvv} value={cvv}/>
+
             </div>
             </div>
             <button className="bg-green-500 px-2 py-1 rounded mt-3" onClick={()=>{onPay()}}>Pay</button>

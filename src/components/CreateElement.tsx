@@ -1,6 +1,4 @@
 import { Car } from "../modals"
-import Bmw from "../img/Bmw.jpg"
-import Mercedes from "../img/mercedes.jpg"
 interface ElementProps {
     Car_element: Car
     onOpen: (element:string)=> void
@@ -8,7 +6,6 @@ interface ElementProps {
     setPrice:any
 }
 export function CreateElement({Car_element,onOpen,setTitle,setPrice}: ElementProps) {
-    console.log(Bmw, Mercedes);
     function SetTitle2(myTitle:any) {
             setTitle(myTitle)
     }
